@@ -15,22 +15,19 @@ Rails.application.routes.draw do
 
   root 'items#index'
 
-  resources :items ,:purchase do
-    collection do
-      get 'get_category_children', defaults: { format: 'json' }
-      get 'get_category_grandchildren', defaults: { format: 'json' }
-    end
-    member do
-      get 'get_category_children', defaults: { format: 'json' }
-      get 'get_category_grandchildren', defaults: { format: 'json' }
-    end
-  end
 
-  resources :purchase, only: [:index] do
+  resources :items do
+
     collection do
-      get 'index', to: 'purchase#index'
-      post 'pay', to: 'purchase#pay'
-      get 'done', to: 'purchase#done'
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+    end
+
+    member do
+      get 'purchase', to: 'items/purchase'
+      post 'pay', to: 'items/pay'
+      get 'done', to: 'items/done'
+
     end
   end
 
