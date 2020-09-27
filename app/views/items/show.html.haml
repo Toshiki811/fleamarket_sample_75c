@@ -39,7 +39,6 @@
                 = image_tag @item.images[0].src.url
                 %ul.subimage
                   %li.subimages
-                    -# - subitem = @item.images.src.url > @item.images[0].src.url
                     - @item.images.each do |image|
                       = image_tag image.src.url
 
