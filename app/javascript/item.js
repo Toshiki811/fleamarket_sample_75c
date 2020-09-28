@@ -1,7 +1,5 @@
 $(document).on('turbolinks:load', function(){
   $(function(){
-
-
     function buildHTML(count) {
       var html = `<div class="preview-box" id="preview-box__${count}">
                     <div class="upper-box">
@@ -15,8 +13,6 @@ $(document).on('turbolinks:load', function(){
                   </div>`
       return html;
     }
-
-   
     if (window.location.href.match(/\/items\/\d+\/edit/)){
       var prevContent = $('.label-content').prev();
       labelWidth = (620 - $(prevContent).css('width').replace(/[^0-9]/g, ''));
@@ -28,7 +24,7 @@ $(document).on('turbolinks:load', function(){
         $(box).attr('id', `delete_btn_${index}`);
       })
       var count = $('.preview-box').length;
-       if (count == 5) {
+      if (count == 5) {
         $('.label-content').hide();
       }
     }

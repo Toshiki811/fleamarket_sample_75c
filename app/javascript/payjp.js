@@ -4,7 +4,6 @@ $(document).on('turbolinks:load',function(){
   let form = $(".form");
 
   $("#charge-form").click(function() {
-   
     form.find("input[type=submit]").prop("disabled", true);
 
     let card = {
@@ -14,7 +13,6 @@ $(document).on('turbolinks:load',function(){
       exp_year: $("#exp_year").val(),
     };
 
-    
     Payjp.createToken(card, function(status, response) {
       if (response.error){
         form.find('.payment-errors').text(response.error.message);
