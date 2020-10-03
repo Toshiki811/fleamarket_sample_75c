@@ -19,6 +19,9 @@ class ItemsController < ApplicationController
   end
 
   def show
+    unless user_signed_in?
+      redirect_to new_user_session_path, alert:'ログインもしくは新規会員登録が必要です'
+    end
     @grandchild_category = @item.category
     if @grandchild_category.has_parent?
       @child_category = @grandchild_category.parent
@@ -132,7 +135,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:name, :description,:brand,:condition_id,:shipping_area_id,:shipping_method_id,:shipping_burden_id,:category_id,:seller_id,:buyer_id,:shipping_data,:price,:image_cache,images_attributes: [:src, :_destroy, :id]).merge(seller_id: current_user.id)
+    params.require(:item).permit(:name, :description,:brand,:condition_id,:shipping_area_id,:shipping_method_id,:shipping_burden_id,:category_id,:seller_id,:buyer_id,:shipping_data_id,:price,:image_cache,images_attributes: [:src, :_destroy, :id]).merge(seller_id: current_user.id)
   end
 
   def set_category  
